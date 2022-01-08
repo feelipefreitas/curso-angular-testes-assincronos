@@ -126,4 +126,24 @@ describe('AppComponent', () => {
       expect(component.peopleListObservable.length).toBeGreaterThan(0);
     }));
   });
+
+  describe('testObservableTimeout', () => {
+    it('(WAIT-FOR-ASYNC) should apply a people list in the peopleListObservableTimeout prop', waitForAsync(() => {
+      // Ocorre erro
+      // component.testObservableTimeout();
+      fixture.detectChanges();
+  
+      fixture.whenStable().then(() => {
+        expect(component.peopleListObservableTimeout.length).toBeGreaterThan(0);
+      });
+    }));
+
+    it('(FAKE-ASYNC) should apply a people list in the peopleListObservableTimeout prop', fakeAsync(() => {
+      fixture.detectChanges();
+  
+      tick(501);
+  
+      expect(component.peopleListObservable.length).toBeGreaterThan(0);
+    }));
+  });
 });

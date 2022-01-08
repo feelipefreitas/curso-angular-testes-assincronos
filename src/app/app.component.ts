@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   peopleListPromise: IPerson[] = [];
   peopleListPromiseTimeout: IPerson[] = [];
   peopleListObservable: IPerson[] = [];
+  peopleListObservableTimeout: IPerson[] = [];
 
   constructor(
     private _peopleService: PeopleService
@@ -23,8 +24,9 @@ export class AppComponent implements OnInit {
     this.testeAsyncAwait();
     this.testePromise();
     this.testPromiseTimeout();
-
     this.testObservable();
+
+    this.testObservableTimeout();
   }
 
   async testeAsyncAwait() {
@@ -47,6 +49,12 @@ export class AppComponent implements OnInit {
   testObservable() {
     this._peopleService.returnPeopleListWithObservable().subscribe((peopleListResponse) => {
       this.peopleListObservable = peopleListResponse;
+    });
+  }
+
+  testObservableTimeout() {
+    this._peopleService.returnPeopleListWithObservableTimeout().subscribe((peopleListResponse) => {
+      this.peopleListObservableTimeout = peopleListResponse;
     });
   }
 }
