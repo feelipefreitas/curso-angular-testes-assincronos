@@ -8,7 +8,9 @@ import { PeopleService } from './services/people.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  peopleList: IPerson[] = [];
+  peopleListAsyncAwait: IPerson[] = [];
+  peopleListPromise: IPerson[] = [];
+  peopleListPromiseTimeout: IPerson[] = [];
 
   constructor(
     private _peopleService: PeopleService
@@ -17,12 +19,23 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     console.log('OnInit');
     
-    this.testeAsyncAwait();  
+    this.testPromiseTimeout();  
   }
 
   async testeAsyncAwait() {
-    console.log('testeAsyncAwait');
-    this.peopleList = 
+    this.peopleListAsyncAwait = 
       await this._peopleService.returnPeopleListWithPromise();
+  }
+
+  testePromise() {
+    this._peopleService.returnPeopleListWithPromise().then((peopleListResponse) => {
+      this.peopleListPromise = peopleListResponse;
+    });
+  }
+
+  testPromiseTimeout() {
+    this._peopleService.returnPeopleListWithPromiseTimeout().then((peopleListResponse) => {
+      this.peopleListPromiseTimeout = peopleListResponse;
+    });
   }
 }
