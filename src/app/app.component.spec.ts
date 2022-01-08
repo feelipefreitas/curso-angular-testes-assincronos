@@ -39,7 +39,7 @@ describe('AppComponent', () => {
       expect(component.peopleListAsyncAwait.length).toBeGreaterThan(0);
     });
   
-    it('(WAIT-FOR-ASYNC) should apply a people list in the peopleList prop', waitForAsync(() => {
+    it('(WAIT-FOR-ASYNC) should apply a people list in the peopleListAsyncAwait prop', waitForAsync(() => {
       fixture.detectChanges();
   
       fixture.whenStable().then(() => {
@@ -47,7 +47,7 @@ describe('AppComponent', () => {
       });
     }));
   
-    it('(FAKE-ASYNC) should apply a people list in the peopleList prop', fakeAsync(() => {
+    it('(FAKE-ASYNC) should apply a people list in the peopleListAsyncAwait prop', fakeAsync(() => {
       fixture.detectChanges();
   
       tick(500);
@@ -94,6 +94,36 @@ describe('AppComponent', () => {
       tick(501);
 
       expect(component.peopleListPromiseTimeout.length).toBeGreaterThan(0);
+    }));
+  });
+
+  describe('testObservable', () => {
+    it('(ASYNC-AWAIT) should test the testObservable function', async () => {
+      await component.testObservable();
+  
+      expect(component.peopleListObservable.length).toBeGreaterThan(0);
+    });
+
+    it('(ASYNC-AWAIT) should apply a people list in the peopleListObservable prop', async () => {
+      await fixture.detectChanges();
+  
+      expect(component.peopleListObservable.length).toBeGreaterThan(0);
+    });
+
+    it('(WAIT-FOR-ASYNC) should apply a people list in the peopleListObservable prop', waitForAsync(() => {
+      fixture.detectChanges();
+  
+      fixture.whenStable().then(() => {
+        expect(component.peopleListObservable.length).toBeGreaterThan(0);
+      });
+    }));
+
+    it('(FAKE-ASYNC) should apply a people list in the peopleListObservable prop', fakeAsync(() => {
+      fixture.detectChanges();
+  
+      tick(500);
+  
+      expect(component.peopleListObservable.length).toBeGreaterThan(0);
     }));
   });
 });

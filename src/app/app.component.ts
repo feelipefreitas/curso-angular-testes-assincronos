@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   peopleListAsyncAwait: IPerson[] = [];
   peopleListPromise: IPerson[] = [];
   peopleListPromiseTimeout: IPerson[] = [];
+  peopleListObservable: IPerson[] = [];
 
   constructor(
     private _peopleService: PeopleService
@@ -18,9 +19,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('OnInit');
+
     this.testeAsyncAwait();
     this.testePromise();
     this.testPromiseTimeout();
+
+    this.testObservable();
   }
 
   async testeAsyncAwait() {
@@ -37,6 +41,12 @@ export class AppComponent implements OnInit {
   testPromiseTimeout() {
     this._peopleService.returnPeopleListWithPromiseTimeout().then((peopleListResponse) => {
       this.peopleListPromiseTimeout = peopleListResponse;
+    });
+  }
+
+  testObservable() {
+    this._peopleService.returnPeopleListWithObservable().subscribe((peopleListResponse) => {
+      this.peopleListObservable = peopleListResponse;
     });
   }
 }
