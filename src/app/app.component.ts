@@ -18,8 +18,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('OnInit');
-    
-    this.testPromiseTimeout();  
+    this.testeAsyncAwait();
+    this.testePromise();
+    this.testPromiseTimeout();
   }
 
   async testeAsyncAwait() {
