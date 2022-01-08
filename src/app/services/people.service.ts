@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { IPeople } from "../interfaces/people.interface";
+import { IPerson } from "../interfaces/person.interface";
 
 @Injectable({
     providedIn: 'root'
 })
 export class PeopleService {
-    readonly peopleList: IPeople[] = [
+    readonly peopleList: IPerson[] = [
         {
             name: 'Lucas'
         },
@@ -15,27 +15,27 @@ export class PeopleService {
         }
     ];
 
-    returnPeopleListWithPromise(): Promise<IPeople[]> {
-        return new Promise<IPeople[]>((resolve) => {
+    returnPeopleListWithPromise(): Promise<IPerson[]> {
+        return new Promise<IPerson[]>((resolve) => {
             return resolve(this.peopleList);
         });
     }
 
-    returnPeopleListWithPromiseTimeout(): Promise<IPeople[]> {
-        return new Promise<IPeople[]>((resolve) => {
+    returnPeopleListWithPromiseTimeout(): Promise<IPerson[]> {
+        return new Promise<IPerson[]>((resolve) => {
             setTimeout(() => {
                 resolve(this.peopleList);
             }, 500);
         });
     }
 
-    returnPeopleListWithObservable(): Observable<IPeople[]> {
+    returnPeopleListWithObservable(): Observable<IPerson[]> {
         return new Observable((observer) => {
             observer.next(this.peopleList);
         });
     }
 
-    returnPeopleListWithObservableTimeout(): Observable<IPeople[]> {
+    returnPeopleListWithObservableTimeout(): Observable<IPerson[]> {
         return new Observable((observer) => {
             setTimeout(() => {
                 observer.next(this.peopleList);

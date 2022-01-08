@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IPerson } from './interfaces/person.interface';
 import { PeopleService } from './services/people.service';
 
 @Component({
@@ -7,34 +8,21 @@ import { PeopleService } from './services/people.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  peopleList: IPerson[] = [];
 
   constructor(
     private _peopleService: PeopleService
   ) { }
 
   ngOnInit(): void {
-    this.testeAssincrono();  
+    console.log('OnInit');
+    
+    this.testeAsyncAwait();  
   }
 
-  // testeSincrono() {
-  //   console.log('1');
-  //   alert('Teste');
-  //   console.log('2');
-  // }
-
-  testeAssincrono() {
-    console.log(1);
-    
-    this._peopleService.returnPeopleListWithObservableTimeout().subscribe(peopleListResponse => {
-      console.log('peopleListResponse', peopleListResponse)
-      console.log(2);
-    });
-
-    console.log(3);
-    console.log(3);
-    console.log(3);
-    console.log(3);
-    console.log(3);
-    console.log(3);
+  async testeAsyncAwait() {
+    console.log('testeAsyncAwait');
+    this.peopleList = 
+      await this._peopleService.returnPeopleListWithPromise();
   }
 }
