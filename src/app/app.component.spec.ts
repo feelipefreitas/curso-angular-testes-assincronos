@@ -89,6 +89,9 @@ describe('AppComponent', () => {
   describe('testPromiseTimeout', () => {
     it('(WAIT-FOR-ASYNC) should apply a people list in the peopleListPromiseTimeout prop', waitForAsync(() => {
       fixture.detectChanges();
+      
+      //Ocorre Erro
+      // component.testPromiseTimeout();
 
       fixture.whenStable().then(() => {
         expect(component.peopleListPromiseTimeout.length).toBeGreaterThan(0);
