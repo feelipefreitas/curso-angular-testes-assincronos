@@ -87,6 +87,14 @@ describe('AppComponent', () => {
   });
 
   describe('testPromiseTimeout', () => {
+    it('(WAIT-FOR-ASYNC) should apply a people list in the peopleListPromiseTimeout prop', waitForAsync(() => {
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(component.peopleListPromiseTimeout.length).toBeGreaterThan(0);
+      });
+    }));
+
     it('(FAKE-ASYNC) should test the testPromiseTimeout function', fakeAsync(() => {
       component.testPromiseTimeout();
       // fixture.detectChanges();
