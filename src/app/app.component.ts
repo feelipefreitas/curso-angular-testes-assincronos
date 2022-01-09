@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
     this.testePromise();
     this.testPromiseTimeout();
     this.testObservable();
-
     this.testObservableTimeout();
   }
 
